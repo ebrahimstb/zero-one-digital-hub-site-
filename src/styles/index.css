@@ -1,0 +1,174 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   GLOBAL STYLES — Zero One Digital Hub
+   Import order matters: Tailwind base → components → utilities → custom globals
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base resets & root defaults ────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body bg-light-bg text-dark-bg transition-colors duration-300;
+  }
+
+  /* Dark mode body */
+  html.dark body {
+    @apply bg-dark-bg text-white;
+  }
+
+  /* Remove default button/input styles so we control them everywhere */
+  button { @apply cursor-pointer; }
+  a      { @apply no-underline; }
+  img    { @apply block max-w-full; }
+}
+
+/* ── Reusable component classes (Tailwind @apply shortcuts) ─────────────────── */
+@layer components {
+
+  /* Page wrapper — accounts for fixed navbar height */
+  .page-wrapper {
+    @apply pt-nav min-h-screen;
+  }
+
+  /* Container — centred, max-width, horizontal padding */
+  .container-custom {
+    @apply w-full max-w-6xl mx-auto px-6;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-20;
+  }
+
+  /* Section header block */
+  .section-tag {
+    @apply font-mono text-[10px] tracking-[0.22em] uppercase text-brand-green mb-3;
+  }
+  .section-title {
+    @apply font-display text-display-md text-dark-bg dark:text-white leading-none;
+  }
+  .section-subtitle {
+    @apply text-base font-light mt-3 text-dark-raised dark:text-white/50;
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-green text-white
+           font-semibold text-sm px-6 py-3 rounded-md
+           transition-opacity duration-200 hover:opacity-85;
+  }
+
+  /* Outlined ghost button */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-light-border2
+           dark:border-dark-border2 text-dark-bg dark:text-white
+           font-medium text-sm px-6 py-3 rounded-md
+           transition-all duration-200
+           hover:border-brand-green hover:text-brand-green;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-light-surface dark:bg-dark-surface
+           border border-light-border dark:border-dark-border
+           rounded-xl transition-all duration-200;
+  }
+  .card-hover {
+    @apply hover:border-brand-green hover:-translate-y-1
+           hover:shadow-[0_8px_32px_rgba(31,173,92,0.08)];
+  }
+
+  /* Page hero section */
+  .page-hero {
+    @apply bg-light-surface dark:bg-dark-surface
+           border-b border-light-border dark:border-dark-border
+           py-16;
+  }
+
+  /* Eyebrow label above page titles */
+  .page-eyebrow {
+    @apply font-mono text-[10px] tracking-[0.22em] uppercase text-brand-green mb-4;
+  }
+
+  /* Page title */
+  .page-title {
+    @apply font-display text-display-lg text-dark-bg dark:text-white
+           leading-none mb-4;
+  }
+
+  /* Page subtitle */
+  .page-subtitle {
+    @apply text-[17px] font-light text-dark-raised dark:text-white/50;
+  }
+
+  /* Badge pill */
+  .badge {
+    @apply font-mono text-[10px] font-bold px-2 py-1 rounded
+           tracking-wide text-white;
+  }
+
+  /* Green accent highlight box */
+  .highlight-box {
+    @apply bg-brand-green-10 border-l-4 border-brand-green
+           px-5 py-4 rounded-r-lg my-5;
+  }
+
+  /* Divider bar (short green line) */
+  .green-divider {
+    @apply w-10 h-0.5 bg-brand-green my-5;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { @apply w-1; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-dark-border2 rounded-sm; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-green; }
+}
+
+/* ── Utility extras not covered by Tailwind ─────────────────────────────────── */
+@layer utilities {
+  /* Grid background — used on hero */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(30,30,30,0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,30,30,0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Radial green glow — hero accent */
+  .bg-hero-glow {
+    background: radial-gradient(
+      ellipse 60% 50% at 65% 50%,
+      rgba(31,173,92,0.07) 0%,
+      transparent 70%
+    );
+  }
+}
+/* ── Device showcase animations ─────────────────────────────────────────────── */
+@keyframes floatSlow {
+  0%, 100% { transform: translate(-50%, -55%); }
+  50%       { transform: translate(-50%, -60%); }
+}
+
+@keyframes floatLeft {
+  0%, 100% { transform: translateY(-33%); }
+  50%       { transform: translateY(-40%); }
+}
+
+@keyframes floatRight {
+  0%, 100% { transform: translateY(-25%); }
+  50%       { transform: translateY(-32%); }
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-8px); }
+}
