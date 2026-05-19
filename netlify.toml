@@ -1,8 +1,6 @@
 [build]
-  command = "npm run build"
+  command = "CI=false npx react-scripts build"
   publish = "build"
 
 [build.environment]
   NPM_FLAGS = "--legacy-peer-deps"
-  CI = "false"
-  
